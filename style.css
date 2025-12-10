@@ -1,132 +1,68 @@
-/* --------------------- General Styles --------------------- */
+/* General Styles */
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: #f7f7f7;
-    color: #333;
-    scroll-behavior: smooth;
+margin: 0;
+font-family: 'Arial', sans-serif;
+background: #f7f7f7;
+color: #333;
+scroll-behavior: smooth;
 }
+
 
 header {
-    background: #ffffff;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+background: #ffffff;
+padding: 20px 50px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+position: sticky;
+top: 0;
+z-index: 10;
 }
+
 
 header h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+margin: 0;
+font-size: 24px;
+font-weight: bold;
 }
+
 
 nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
+margin-left: 20px;
+text-decoration: none;
+color: #333;
+font-weight: bold;
+transition: color 0.3s;
 }
+nav a:hover { color: #0077ff; }
 
-nav a:hover {
-    color: #0077ff;
-}
 
-/* --------------------- Hero Section --------------------- */
-.hero {
-    text-align: center;
-    padding: 100px 20px;
-    background: #eef4ff;
-    animation: fadeIn 1s ease-out;
-}
+/* Hero */
+.hero { text-align: center; padding: 100px 20px; background: #eef4ff; animation: fadeIn 1s ease-out; }
+.hero img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+h2 { margin-top: 0; font-size: 28px; }
 
-.hero img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
-}
 
-h2 {
-    margin-top: 0;
-    font-size: 28px;
-}
+/* Sections */
+section { padding: 60px 50px; }
+.section-content { margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section-content.visible { opacity: 1; transform: translateY(0); }
 
-/* --------------------- Sections --------------------- */
-section {
-    padding: 60px 50px;
-}
 
-.section-content {
-    margin-bottom: 20px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* Contact Form */
+.contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
+.contact-form button { padding: 10px 20px; background: #0077ff; border: none; color: #fff; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
+.contact-form button:hover { background: #005fcc; }
 
-.section-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
 
-/* --------------------- Contact Form --------------------- */
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+/* Footer */
+footer { background: #222; color: #fff; text-align: center; padding: 20px; }
+.social-icons { margin-top: 10px; }
+.social-logo { width: 30px; height: 30px; margin: 0 10px; transition: transform 0.3s; }
+.social-logo:hover { transform: scale(1.2); }
 
-.contact-form button {
-    padding: 10px 20px;
-    background: #0077ff;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
 
-.contact-form button:hover {
-    background: #005fcc;
-}
-
-/* --------------------- Footer --------------------- */
-footer {
-    background: #222;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
-
-.social-icons {
-    margin-top: 10px;
-}
-
-.social-logo {
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-    transition: transform 0.3s;
-}
-
-.social-logo:hover {
-    transform: scale(1.2);
-}
-
-/* --------------------- Animations --------------------- */
-@keyframes fadeIn {
-    from { opacity: 0; transform:
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes float { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
