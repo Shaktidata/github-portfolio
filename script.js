@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (id === 'p2') {
       return `<h2>Coming Soon</h2>
-              <p>An exciting projects is on its way.</p>
+              <p>An exciting project is on its way.</p>
               <p><strong>Tech:</strong> PowerBI</p>`;
     }
     return `<h2>Project</h2><p>Details coming soon.</p>`;
