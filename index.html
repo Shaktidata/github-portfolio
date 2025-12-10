@@ -1,250 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shakti C — Resume</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Personal resume — vibrant animated single page">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakti C | Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0077ff;
+        }
+
+        section {
+            padding: 60px 50px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: #eef4ff;
+        }
+
+        .hero img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .section-content {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background: #0077ff;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #005fcc;
+        }
+    </style>
 </head>
 <body>
-  <header class="nav-wrap">
-    <nav class="nav container">
-      <a class="logo" href="#home">Your<span> Name</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#certs">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">🌓</button>
-      <button id="menuBtn" class="btn-icon" aria-label="Menu">☰</button>
+
+<header>
+    <h1>Shakti C</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
     </nav>
-  </header>
+</header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <h1>Hi, I'm <span id="heroName">Shakti</span>.</h1>
-          <p class="tagline">Vibrant design + data-driven problem solver — <span id="heroRole">Data Analyst • Supply Chain</span></p>
-          <p class="cta-row">
-            <a class="btn" href="#projects">View Projects</a>
-            <a class="btn btn-outline" href="#contact">Contact Me</a>
-          </p>
-          <div class="socials">
-            <!-- replace links -->
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="profile-wrap">
-            <img src="assets/profile.jpg" alt="Profile photo" id="profileImg">
-            <div class="pulse"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="hero">
+    <img src="profile.jpg" alt="Profile Photo">
+    <h2>Data Analyst Enthusiast | Supply Chain Professional</h2>
+    <p>I am a data analyst enthusiast who enjoys exploring datasets, uncovering patterns, and presenting insights through visuals and statistics. I’m eager to apply my analytical skills to real-world supply chain challenges and contribute to meaningful data-driven projects.</p>
+</section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>Hello! I'm <strong>Your Name</strong>, a data-focused supply chain professional with experience in manufacturing. I combine analytical thinking, statistical tools, and clear visualisation to translate operational data into business impact.</p>
-            <ul>
-              <li>Strong in SQL, Excel, Power BI / Tableau</li>
-              <li>Experience with supply chain optimisations and process improvement</li>
-              <li>Effective communicator & cross-functional collaborator</li>
-            </ul>
-          </div>
-          <div class="about-stats">
-            <div class="stat">
-              <h3>5+</h3>
-              <p>Years Experience</p>
-            </div>
-            <div class="stat">
-              <h3>30+</h3>
-              <p>Projects</p>
-            </div>
-            <div class="stat">
-              <h3>10k+</h3>
-              <p>Data Rows Analyzed</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-      <div class="container">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h4>SQL</h4>
-            <div class="bar"><div class="fill" style="width:90%"></div></div>
-          </div>
-          <div class="skill-card">
-            <h4>Power BI / Tableau</h4>
-            <div class="bar"><div class="fill" style="width:85%"></div></div>
-          </div>
-          <div class="skill-card">
-            <h4>Python (Pandas)</h4>
-            <div class="bar"><div class="fill" style="width:75%"></div></div>
-          </div>
-          <div class="skill-card">
-            <h4>Supply Chain</h4>
-            <div class="bar"><div class="fill" style="width:88%"></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="time">2023 — Present</div>
-            <div class="content">
-              <h3>Senior Data Analyst — ACME Manufacturing</h3>
-              <p>Led supply chain analytics projects that reduced lead time by 12% and improved forecasting accuracy by 18%.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="time">2020 — 2023</div>
-            <div class="content">
-              <h3>Data Analyst — Textile Co.</h3>
-              <p>Built KPI dashboards and automated monthly reporting pipelines using SQL and Power BI.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-          <!-- Example project card -->
-          <article class="project-card">
-            <div class="proj-head">
-              <h3>Inventory Forecasting</h3>
-              <span class="tag">Power BI</span>
-            </div>
-            <p>Developed a multi-echelon forecasting dashboard that lowered stockouts by 15%.</p>
-            <button class="btn-light" data-proj="p1">Details</button>
-          </article>
-
-          <article class="project-card">
-            <div class="proj-head">
-              <h3>Order Analysis Toolkit</h3>
-              <span class="tag">Python</span>
-            </div>
-            <p>Automated cleaning and analysis of order data to identify fulfilment bottlenecks.</p>
-            <button class="btn-light" data-proj="p2">Details</button>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="section">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="cards">
-          <div class="card">
-            <h4>MBA — Supply Chain Management</h4>
-            <p>University Name — 2019</p>
-          </div>
-          <div class="card">
-            <h4>BSc — Industrial Engineering</h4>
-            <p>University Name — 2015</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certs" class="section">
-      <div class="container">
-        <h2 class="section-title">Certifications</h2>
-        <div class="cert-grid">
-          <div class="cert">
-            <h4>CSCP — APICS</h4>
-            <p>2022</p>
-          </div>
-          <div class="cert">
-            <h4>Power BI Data Analyst — Microsoft</h4>
-            <p>2021</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <p>Want to work together? Send me a message. Or email: <a id="emailLink" href="mailto:stereoslave@gmail.com">stereoslave@gmail.com</a></p>
-            <ul>
-              <li>Location: Perth, Australia</li>
-              <li>Open to remote / on-site roles</li>
-            </ul>
-          </div>
-
-          <!-- Form uses FormSubmit.co - replace the email with yours -->
-          <form class="contact-form" action="https://formsubmit.co/stereoslave@gmail.com" method="POST">
-            <!-- Prevent captcha and redirect back to thank-you -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="thank-you.html">
-            <div class="form-row">
-              <label for="name">Name</label>
-              <input id="name" name="name" required />
-            </div>
-            <div class="form-row">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div class="form-row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <div class="form-row">
-              <button class="btn" type="submit">Send Message</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container">
-        <p>© <span id="year"></span> Your Name — Built with ❤️</p>
-      </div>
-    </footer>
-
-    <!-- Modal placeholder for project details -->
-    <div id="modal" class="modal" aria-hidden="true">
-      <div class="modal-body">
-        <button id="modalClose" class="modal-close">✕</button>
-        <div id="modalContent"></div>
-      </div>
+<section id="about">
+    <h2>About Me</h2>
+    <div class="section-content">
+        <p>With 9+ years in supply chain management, I have a proven track record of optimising end-to-end operations. Known for a dependable, problem-solving mindset and strong communication skills, I prioritise stakeholder satisfaction and drive value through process optimisation, effective collaboration, and data-driven decision-making. By leveraging data analysis, reporting, and digital tools, I enhance accuracy, efficiency, and overall operational performance.</p>
     </div>
-  </main>
+</section>
 
-  <script src="script.js"></script>
+<section id="skills">
+    <h2>Skills & Expertise</h2>
+    <div class="section-content">
+        <ul>
+            <li>Enterprise Resource Planning Systems</li>
+            <li>MS Office Suite 365</li>
+            <li>Power BI</li>
+            <li>Tableau</li>
+            <li>Authority</li>
+            <li>Python</li>
+            <li>HTML</li>
+            <li>JavaScript</li>
+        </ul>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="section-content">
+        <p><strong>Netflix Recommendation Engine:</strong> Implemented a recommendation engine using collaborative filtering techniques to enhance user content suggestions.</p>
+    </div>
+</section>
+
+<section id="experience">
+    <h2>Experience</h2>
+    <div class="section-content">
+        <p>9+ years in Supply Chain Management roles, focusing on optimising operations, stakeholder management, and implementing data-driven solutions.</p>
+    </div>
+</section>
+
+<section id="education">
+    <h2>Education</h2>
+    <div class="section-content">
+        <p><strong>Masters of Business Administration</strong> — Stamford University, Thailand 2023</p>
+        <p><strong>Bachelor of Science in Information Technology</strong> — University of Hertfordshire, UK 2011</p>
+    </div>
+</section>
+
+<section id="certifications">
+    <h2>Certifications</h2>
+    <div class="section-content">
+        <p>APICS Certified Supply Chain Professional</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <form class="contact-form" action="mailto:youremail@example.com" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 Shakti C | All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
