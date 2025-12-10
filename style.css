@@ -79,11 +79,11 @@ body{
 .timeline{display:flex;flex-direction:column;gap:18px}
 .timeline-item{display:flex;gap:18px;align-items:flex-start}
 .timeline-item .time{min-width:120px;color:var(--muted)}
-.timeline-item .content{background:var(--glass);padding:14px;border-radius:12px;flex:1}
+.timeline-item .content{background:var(--glass);padding:16px;border-radius:12px;flex:1}
 
 /* projects */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px}
+.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:12px}
 .project-card .tag{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:0.8rem}
 
 /* cards */
