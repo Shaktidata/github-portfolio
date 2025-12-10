@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (id === 'p1') {
       return `<h2><a href="https://www.datascienceportfol.io/shaktic/projects/0" target="_blank">Netflix Recommendation Engine</a></h2>
               <p>This project uses a correlation matrix on simulated viewing data to quantify audience overlap between different TV shows. By identifying strong positive correlations, the analysis allows streaming platforms like Netflix to make relevant, genre-based recommendations (e.g., recommending Dark to Stranger Things viewers) to improve user engagement and retention.</p>
-              <p><strong>Tech:</strong>Excel</p>`;
+              <p><strong>Tech:</strong> Excel</p>`;
     }
     if (id === 'p2') {
       return `<h2>Coming Soon</h2>
