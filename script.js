@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Helper for project content
   function getProjectContent(id) {
     if (id === 'p1') {
-      return `<h2>Inventory Forecasting</h2>
-              <p>Full Power BI dashboard and forecasting model that integrated sales history, lead times and promotions to reduce stockouts by 15%.</p>
-              <p><strong>Tech:</strong> Power BI, SQL, Excel</p>`;
+      return `<h2>Netflix Recommendation Engine</h2>
+              <p>This project uses a correlation matrix on simulated viewing data to quantify audience overlap between different TV shows. By identifying strong positive correlations, the analysis allows streaming platforms like Netflix to make relevant, genre-based recommendations (e.g., recommending Dark to Stranger Things viewers) to improve user engagement and retention.</p>
+              <p><strong>Tech:</strong>Excel</p>`;
     }
     if (id === 'p2') {
-      return `<h2>Order Analysis Toolkit</h2>
-              <p>A Python package to clean and analyze order and fulfillment data; includes edge-case handling and summary reports.</p>
-              <p><strong>Tech:</strong> Python, Pandas</p>`;
+      return `<h2>Coming Soon</h2>
+              <p>An exciting projects is on its way.</p>
+              <p><strong>Tech:</strong> PowerBI</p>`;
     }
     return `<h2>Project</h2><p>Details coming soon.</p>`;
   }
