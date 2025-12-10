@@ -4,17 +4,42 @@
   <meta charset="utf-8">
   <title>Thanks — Message sent</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Thank you for your message! It has been successfully sent to Shakti.">
+  
+  <link rel="stylesheet" href="style.css"> 
   <style>
-    body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#071025;color:#fff;font-family:Inter,Arial}
-    .box{max-width:600px;text-align:center;padding:30px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
-    a{color:#7b61ff;text-decoration:none;font-weight:700}
+    /* Specific styles for this page */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      max-width: 600px;
+      text-align: center;
+      padding: 30px;
+      border-radius: var(--radius); 
+      /* Use consistent gradient background */
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+    }
+    a {
+      color: var(--accent-color); 
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    a:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
   <div class="box">
     <h1>Thanks — your message is on its way!</h1>
-    <p>I typically reply within a few days. If your message is urgent, please email me at <a href="mailto:stereoslave@gmail.com">stereoslave@gmail.com</a></p>
-    <p><a href="index.html">Back to site</a></p>
+    <p>I typically reply within a few days. If your message is urgent, please email me directly at <a href="mailto:stereoslave@gmail.com">stereoslave@gmail.com</a>.</p>
+    <p><a href="index.html">← Back to the Portfolio</a></p>
   </div>
 </body>
 </html>
