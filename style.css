@@ -10,7 +10,7 @@
   --accent-color: #7b61ff;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   
-  /* NEW: Skill Bar Width Variables for CSS-based control */
+  /* Skill Bar Width Variables */
   --skill-ms-office: 90%;
   --skill-bi-tableau: 10%;
   --skill-python: 10%;
@@ -31,7 +31,7 @@ body{
   overflow-x:hidden;
 }
 
-/* NEW: Accessibility Focus State */
+/* Accessibility Focus */
 :focus-visible {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
@@ -54,10 +54,8 @@ body{
 .nav-links{display:flex;gap:14px;list-style:none;margin:0;padding:0}
 .nav-links a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .25s;}
 .nav-links a:hover,.nav-links a.active{color:#fff;background:var(--glass-2)}
-
-/* NEW: Mobile Menu Toggle Styling */
 .menu-toggle {
-    display: none; /* Hidden by default */
+    display: none;
     background: transparent;
     border: none;
     color: #fff;
@@ -80,7 +78,7 @@ body{
 .hero-text h1{font-size:2.2rem;margin:0 0 12px;letter-spacing:-0.5px}
 .tagline{color:var(--muted);margin:0 0 16px}
 
-/* NEW: Hero Social Links Styling */
+/* Hero Social Links */
 .hero-text .socials {
     margin-top: 20px;
     display: flex;
@@ -92,22 +90,22 @@ body{
     padding: 0; 
     margin-right: 20px; 
     transition: color 0.2s, transform 0.2s;
-    font-size: 1.8rem; /* Icon size */
+    font-size: 1.8rem;
     display: inline-flex;
 }
 .socials a:hover {
     color: #fff;
     transform: translateY(-2px);
 }
-/* END NEW */
 
+/* hero card */
 .hero-card{display:flex;justify-content:center}
 .profile-wrap{position:relative;width:260px;height:260px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 20px 60px rgba(11,18,32,.6)}
 .profile-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.03);transition:transform .8s}
 .profile-wrap:hover img{transform:scale(1.08)}
 .pulse{position:absolute;left:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(123,97,255,0.12);filter:blur(24px);animation:float 6s linear infinite}
 
-/* simple section title */
+/* section titles */
 .section{padding:60px 0}
 .section-title{font-size:1.4rem;margin:0 0 18px;color:#fff}
 
@@ -119,26 +117,26 @@ body{
 
 /* skills */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.skill-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px}
+.skill-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;opacity:0;transform: translateY(20px); transition: all 0.6s ease-out;}
+.skill-card.show{opacity:1;transform: translateY(0);}
 .skill-card h4{margin:0 0 8px}
 .bar{height:12px;background:rgba(255,255,255,0.03);border-radius:10px;overflow:hidden}
-.fill{height:100%;background:linear-gradient(90deg,#ff6ec7,#7b61ff,#00d2ff);width:0;animation:fillAnim 1.2s forwards}
-
-/* NEW: Skill Bar Fill Class Definitions */
+.fill{height:100%;background:linear-gradient(90deg,#ff6ec7,#7b61ff,#00d2ff);width:0;transition: width 1.2s ease-out}
+/* Skill Bar Fill */
 .skill-excel .fill { --w: var(--skill-ms-office); }
 .skill-bi-tableau .fill { --w: var(--skill-bi-tableau); }
 .skill-python .fill { --w: var(--skill-python); }
 .skill-supply-chain .fill { --w: var(--skill-supply-chain); }
-/* END NEW */
 
 /* timeline */
 .timeline{display:flex;flex-direction:column;gap:18px}
-.timeline-item{display:flex;gap:18px;align-items:center} /* Change from flex-start to center */
+.timeline-item{display:flex;gap:18px;align-items:center;opacity:0;transform: translateY(20px); transition: all 0.6s ease-out;}
+.timeline-item.show{opacity:1; transform: translateY(0);}
 .timeline-item .time{
     min-width:120px;
     color:var(--muted);
     display:flex;
-    align-items:center; /* Vertically center the year text */
+    align-items:center;
     justify-content:flex-start;
 }
 .timeline-item .content{
@@ -148,12 +146,19 @@ body{
     padding:16px;
     border-radius:12px;
     flex:1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.timeline-item .content:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 /* projects */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:12px}
+.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:12px;opacity:0;transform: translateY(20px); transition: all 0.6s ease-out;}
+.project-card.show{opacity:1; transform: translateY(0);}
 .project-card .tag{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:0.8rem}
+.project-card:hover{transform: translateY(-4px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.25);}
 
 /* cards */
 .cards{display:flex;gap:16px;flex-wrap:wrap}
@@ -184,37 +189,12 @@ body{
   .about-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   
-  /* Show the toggle button */
-  .menu-toggle {
-    display: block; 
-  }
-  
-  /* Mobile Nav styles for improved animation (using visibility/opacity/transform) */
+  .menu-toggle { display: block; }
   .nav-links{
-    display:flex; /* Keep flex for layout */
-    position:absolute;
-    right:20px;
-    top:64px;
-    background:var(--card);
-    padding:12px;
-    border-radius:10px;
-    flex-direction:column;
-    
-    visibility: hidden; /* Hide by default */
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    display:flex; position:absolute; right:20px; top:64px; background:var(--card); padding:12px; border-radius:10px; flex-direction:column;
+    visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   }
-  
-  /* Show state */
-  .nav-links.show {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+  .nav-links.show { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0);}
 }
 
-@keyframes fillAnim{to{width:var(--w,100%)}}
 @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(10px)}100%{transform:translateY(0)}}
