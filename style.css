@@ -158,43 +158,31 @@ body {
 .project-card .tag{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:0.8rem}
 .project-card:hover{transform: translateY(-4px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.25);}
 
-/* cards (Education) */
+/* cards */
 .cards{display:flex;gap:16px;flex-wrap:wrap}
+.card{background:var(--glass);padding:14px;border-radius:12px}
 
 /* certs */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 
-/* Education & Certification cards (FINAL WORKING BLOCK) */
-/* This combines the base styles, padding, and transitions into a single rule */
+/* Education & Certification cards */
 .cards .card,
 .cert-grid .cert {
-    /* Base Container Styles */
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    padding: 16px; /* Restored padding here to match your current HTML structure */
-    
-    /* Initial state for JS fade-in animation */
-    opacity: 0;
-    transform: translateY(20px);
-    
-    /* Crucial: Define all transitions including transform and box-shadow for hover */
-    transition: opacity 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    opacity: 0; /* for animation */
+    transform: translateY(20px); /* initial offset */
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Add the hover effect for Education and Certification cards */
-.cards .card:hover,
-.cert-grid .cert:hover {
-    transform: translateY(-4px); /* Lifts the card */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Adds a larger shadow */
-}
-
-/* When visible (triggered by JS) */
+/* When visible */
 .cards .card.visible,
 .cert-grid .cert.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 /* contact */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
