@@ -131,23 +131,24 @@ body{
 .skill-supply-chain .fill { --w: var(--skill-supply-chain); }
 /* END NEW */
 
-
 /* timeline */
 .timeline{display:flex;flex-direction:column;gap:18px}
-.timeline-item{display:flex;gap:18px;align-items:flex-start}
-.timeline-item .time{min-width:120px;color:var(--muted)}
-
-/* UPDATED: Timeline Item Content for better visibility */
+.timeline-item{display:flex;gap:18px;align-items:center} /* Change from flex-start to center */
+.timeline-item .time{
+    min-width:120px;
+    color:var(--muted);
+    display:flex;
+    align-items:center; /* Vertically center the year text */
+    justify-content:flex-start;
+}
 .timeline-item .content{
     background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-    border: 1px solid rgba(255,255,255,0.08); /* Added border */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Added shadow */
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding:16px;
     border-radius:12px;
-    flex:1
+    flex:1;
 }
-/* END UPDATED */
-
 
 /* projects */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
