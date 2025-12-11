@@ -12,9 +12,9 @@
   
   /* NEW: Skill Bar Width Variables for CSS-based control */
   --skill-ms-office: 90%;
-  --skill-bi-tableau: 55%;
-  --skill-python: 55%;
-  --skill-supply-chain: 88%;
+  --skill-bi-tableau: 10%;
+  --skill-python: 10%;
+  --skill-supply-chain: 95%;
 }
 
 *{box-sizing:border-box}
