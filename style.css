@@ -165,13 +165,15 @@ body {
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 
 /* Education & Certification cards (FINAL WORKING BLOCK) */
+/* This combines the base styles, padding, and transitions into a single rule */
 .cards .card,
 .cert-grid .cert {
-    /* Base Container Styles (border, background, shadows) */
+    /* Base Container Styles */
     background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    padding: 16px; /* Restored padding here, since you did not change HTML */
     
     /* Initial state for JS fade-in animation */
     opacity: 0;
@@ -179,11 +181,6 @@ body {
     
     /* Crucial: Define all transitions including transform and box-shadow for hover */
     transition: opacity 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-/* Inner wrapper to restore padding that was removed from the card/cert element */
-.card-inner {
-    padding: 16px;
 }
 
 /* Add the hover effect for Education and Certification cards */
