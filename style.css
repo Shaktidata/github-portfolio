@@ -19,16 +19,14 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;
-  background: radial-gradient(1000px 500px at 10% 10%,rgba(123,97,255,0.12), transparent),
-              radial-gradient(800px 400px at 90% 90%, rgba(0,210,255,0.06), transparent),
-              var(--bg);
-  color:#e6eef8;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.5;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  background: var(--bg); /* solid dark top shade */
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 /* Accessibility Focus */
