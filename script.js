@@ -1,39 +1,31 @@
-// Function to handle closing the modal, used by multiple events
+// Function to handle closing the modal
 function closeModal() {
   const modal = document.getElementById('modal');
   if (modal) {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
     
-    // Return focus to the button that opened the modal
-    if (modal.opener) {
-      modal.opener.focus();
-    }
-    modal.opener = null; // Clear opener reference
+    if (modal.opener) modal.opener.focus();
+    modal.opener = null;
   }
 }
 
-// Helper for project content - returns data object
+// Helper for project content
 function getProjectData(id) {
-    if (id === 'p1') {
-        return {
-            title: 'Netflix Recommendation Engine',
-            link: 'https://www.datascienceportfol.io/shaktic/projects/0',
-            tag: 'Excel',
-            details: 'This project uses a correlation matrix on simulated viewing data to quantify audience overlap between different TV shows. By identifying strong positive correlations, the analysis allows streaming platforms like Netflix to make relevant, genre-based recommendations (e.g., recommending Dark to Stranger Things viewers) to improve user engagement and retention.',
-        };
-    }
-    if (id === 'p2') {
-        return {
-            title: 'Coming Soon',
-            link: null, // No link yet
-            tag: 'Power BI',
-            details: 'An exciting project is on its way.',
-        };
-    }
+    if (id === 'p1') return {
+        title: 'Netflix Recommendation Engine',
+        link: 'https://www.datascienceportfol.io/shaktic/projects/0',
+        tag: 'Excel',
+        details: 'This project uses a correlation matrix on simulated viewing data to quantify audience overlap between different TV shows. By identifying strong positive correlations, the analysis allows streaming platforms like Netflix to make relevant, genre-based recommendations to improve engagement and retention.',
+    };
+    if (id === 'p2') return {
+        title: 'Coming Soon',
+        link: null,
+        tag: 'Power BI',
+        details: 'An exciting project is on its way.',
+    };
     return { title: 'Project', details: 'Details coming soon.' };
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
@@ -42,77 +34,55 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modalClose');
   const modalContent = document.getElementById('modalContent');
   const modalTitle = document.getElementById('modalTitle');
-  
-  // Mobile Menu Toggle Logic
+
   const menuToggle = document.getElementById('menuToggle');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
+  if (menuToggle) menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      
-      // 1. Toggle the 'show' class for CSS styling
       navLinks.classList.toggle('show');
-      
-      // 2. Toggle the ARIA attribute for screen readers
       menuToggle.setAttribute('aria-expanded', !isExpanded);
-    });
-  }
+  });
 
-  // Update year
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // Project details modal opening
+  // Modal logic
   document.querySelectorAll('.btn-light[data-proj]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.proj;
       const data = getProjectData(id);
-
       if (modalContent && modal) {
-        // Construct HTML using the returned data object
-        let html = '';
-        if (data.link) {
-            html += `<h2><a href="${data.link}" target="_blank" rel="noopener">${data.title}</a></h2>`;
-        } else {
-            html += `<h2>${data.title}</h2>`;
-        }
-        if (data.tag) {
-            html += `<p><strong>Tech:</strong> ${data.tag}</p>`;
-        }
+        let html = data.link ? `<h2><a href="${data.link}" target="_blank">${data.title}</a></h2>` : `<h2>${data.title}</h2>`;
+        if (data.tag) html += `<p><strong>Tech:</strong> ${data.tag}</p>`;
         html += `<p>${data.details}</p>`;
-
         modalContent.innerHTML = html;
-        modalTitle.textContent = data.title; // Update the title for accessibility
-        
+        modalTitle.textContent = data.title;
         modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        
-        // Store the button that opened the modal and shift focus
+        modal.setAttribute('aria-hidden','false');
         modal.opener = btn;
         modalClose.focus();
       }
     });
   });
 
-  // Close modal via close button
-  if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
-  }
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', e => { if(modal && modal.classList.contains('show') && e.key==='Escape') closeModal(); });
 
-  // Close modal via clicking outside the modal-body
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
+  // -----------------------
+  // Scroll-trigger animations
+  // -----------------------
+  const observerOptions = { threshold: 0.15 };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        if(entry.target.classList.contains('skill-card')){
+          const fill = entry.target.querySelector('.fill');
+          fill.style.width = getComputedStyle(fill).getPropertyValue('--w');
+        }
+        observer.unobserve(entry.target);
       }
     });
-  }
-  
-  // Close modal via Escape key press (Accessibility)
-  document.addEventListener('keydown', (e) => {
-    if (modal && modal.classList.contains('show') && e.key === 'Escape') {
-      closeModal();
-    }
-  });
+  }, observerOptions);
 
+  document.querySelectorAll('.timeline-item, .project-card, .skill-card').forEach(el => observer.observe(el));
 });
