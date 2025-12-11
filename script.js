@@ -35,19 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modalClose');
   const modalContent = document.getElementById('modalContent');
   const modalTitle = document.getElementById('modalTitle');
+  const menuToggle = document.getElementById('menuToggle');
+
 
   // Set current year in the footer
   if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
+  // Mobile menu toggle & Focus FIX
   if (menuToggle) menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      const links = navLinks.querySelectorAll('a');
+
       navLinks.classList.toggle('show');
       menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+      // Accessibility FIX: If menu is opened, focus on the first link
+      if (!isExpanded && links.length > 0) {
+        links[0].focus();
+      }
   });
   
-  // --- REMOVED REDUNDANT animateOnScroll FUNCTION AND CALLS ---
+  // Close menu when a link is clicked (single-page navigation)
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 880) {
+        navLinks.classList.remove('show');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus(); // Return focus to the toggle button
+      }
+    });
+  });
 
   // Modal logic
   document.querySelectorAll('.btn-light[data-proj]').forEach(btn => {
@@ -56,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = getProjectData(id);
       if (modalContent && modal) {
         // Use an anchor tag for the project link if it exists
-        let html = data.link ? 
-            `<h2><a href="${data.link}" target="_blank" rel="noopener">${data.title}</a></h2>` : 
+        let html = data.link ? 
+            `<h2><a href="${data.link}" target="_blank" rel="noopener noreferrer">${data.title}</a></h2>` : 
             `<h2>${data.title}</h2>`;
-        
+        
         if (data.tag) html += `<p><strong>Tech:</strong> ${data.tag}</p>`;
         html += `<p>${data.details}</p>`;
-        
+        
         modalContent.innerHTML = html;
         modalTitle.textContent = data.title;
         modal.classList.add('show');
@@ -88,14 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
         entry.target.classList.add('show');
-        
+        
         // Skill Bar Animation Logic (Correctly applied to elements with 'skill-card')
         if(entry.target.classList.contains('skill-card')){
           const fill = entry.target.querySelector('.fill');
           // Applies the calculated width from CSS root variables
-          fill.style.width = getComputedStyle(fill).getPropertyValue('--w'); 
+          fill.style.width = getComputedStyle(fill).getPropertyValue('--w'); 
         }
-        
+        
         observer.unobserve(entry.target);
       }
     });
