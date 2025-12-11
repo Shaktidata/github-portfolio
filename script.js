@@ -41,6 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.toggle('show');
       menuToggle.setAttribute('aria-expanded', !isExpanded);
   });
+  
+// Animate cards on scroll into view
+const animateOnScroll = (selector) => {
+    const elements = document.querySelectorAll(selector);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    elements.forEach(el => observer.observe(el));
+};
+
+// Apply to experience, projects, education, certifications
+animateOnScroll('.timeline-item .content');
+animateOnScroll('.project-card');
+animateOnScroll('.cards .card');
+animateOnScroll('.cert-grid .cert');
 
   if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
