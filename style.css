@@ -160,12 +160,11 @@ body {
 
 /* cards (Education) */
 .cards{display:flex;gap:16px;flex-wrap:wrap}
-/* .card removed old padding:14px; to use .card-inner */
 
 /* certs */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 
-/* Education & Certification cards (REVISED BLOCK) */
+/* Education & Certification cards (FINAL WORKING BLOCK) */
 .cards .card,
 .cert-grid .cert {
     /* Base Container Styles (border, background, shadows) */
