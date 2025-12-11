@@ -36,6 +36,20 @@ body {
     border-radius: 4px;
 }
 
+/* Visually Hidden utility for accessibility (used on modalTitle) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
 /* container */
 .container{
   width:90%;
@@ -114,16 +128,16 @@ body {
 
 /* Stats alignment cleanup */
 .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Ensure clean spacing between stats */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Ensure clean spacing between stats */
 }
 .stat{
-    background:var(--glass);
-    padding:14px;
-    border-radius:12px;
-    margin-bottom:0; /* Removed margin-bottom */
-    text-align:center;
+    background:var(--glass);
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:0; /* Removed margin-bottom */
+    text-align:center;
 }
 .stat h3{margin:0;color:#fff}
 
@@ -134,10 +148,10 @@ body {
 .skill-card h4{margin:0 0 8px}
 .bar{height:12px;background:rgba(255,255,255,0.03);border-radius:10px;overflow:hidden}
 .fill{
-    height:100%;
-    background:linear-gradient(90deg,#ff6ec7,#7b61ff,#00d2ff);
-    width:var(--w, 0%); /* FIX: Ensure the width uses the variable --w or defaults to 0 */
-    transition: width 1.2s ease-out;
+    height:100%;
+    background:linear-gradient(90deg,#ff6ec7,#7b61ff,#00d2ff);
+    width:var(--w, 0%); /* FIX: Ensure the width uses the variable --w or defaults to 0 */
+    transition: width 1.2s ease-out;
 }
 /* Skill Bar Fill */
 .skill-excel .fill { --w: var(--skill-ms-office); }
@@ -148,13 +162,13 @@ body {
 /* timeline */
 .timeline{display:flex;flex-direction:column;gap:18px}
 .timeline-item{
-    display:flex;
-    gap:18px;
-    /* FIX: Align items to start for cleaner vertical stacking on smaller screens */
-    align-items: flex-start; 
-    opacity:0;
-    transform: translateY(20px); 
-    transition: all 0.6s ease-out;
+    display:flex;
+    gap:18px;
+    /* FIX: Align items to start for cleaner vertical stacking on smaller screens */
+    align-items: flex-start; 
+    opacity:0;
+    transform: translateY(20px); 
+    transition: all 0.6s ease-out;
 }
 .timeline-item.show{opacity:1; transform: translateY(0);}
 .timeline-item .time{
@@ -185,23 +199,23 @@ body {
 
 /* FIX: Ensure project title and tag align horizontally */
 .project-card .proj-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px; /* Added spacing after the header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* Added spacing after the header */
 }
 .project-card .proj-head h3 {
-    margin: 0;
+    margin: 0;
 }
 .project-card .tag{
-    padding:6px 8px;
-    border-radius:8px;
-    background:rgba(255,255,255,0.02);
-    font-size:0.8rem;
-    white-space: nowrap; /* Prevent tag from wrapping */
+    padding:6px 8px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.02);
+    font-size:0.8rem;
+    white-space: nowrap; /* Prevent tag from wrapping */
 }
 .project-card p {
-    margin-bottom: 12px; /* Ensure space before the 'Details' button */
+    margin-bottom: 12px; /* Ensure space before the 'Details' button */
 }
 .project-card:hover{transform: translateY(-4px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.25);}
 
@@ -235,30 +249,30 @@ body {
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .contact-form{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px}
 .contact-info p {
-    margin-top: 0; /* FIX: Prevents large gap above the contact info text */
+    margin-top: 0; /* FIX: Prevents large gap above the contact info text */
 }
 
 /* Form Row Spacing/Alignment */
 .form-row{
-    margin-bottom: 15px; /* Increased margin for better vertical separation */
+    margin-bottom: 15px; /* Increased margin for better vertical separation */
 }
 .form-row label{display:block;font-size:0.85rem;margin-bottom:6px;color:var(--muted)}
 .form-row input,
 .form-row textarea{
-    width:100%;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,0.04);
-    background:transparent;
-    color:#fff;
-    /* FIX: Added transition for smoother focus effect */
-    transition: border-color 0.2s, box-shadow 0.2s; 
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.04);
+    background:transparent;
+    color:#fff;
+    /* FIX: Added transition for smoother focus effect */
+    transition: border-color 0.2s, box-shadow 0.2s; 
 }
 .form-row input:focus,
 .form-row textarea:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 1px var(--accent-color);
-    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
+    outline: none;
 }
 
 
@@ -277,14 +291,14 @@ body {
   .about-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   .timeline-item {
-    flex-direction: column; /* Stacks time above content on mobile */
-    align-items: center;
+    flex-direction: column; /* Stacks time above content on mobile */
+    align-items: center;
   }
-  .timeline-item .time {
-    justify-content: center; /* Center the time text */
-    margin-bottom: 8px;
-    min-width: auto;
-  }
+  .timeline-item .time {
+    justify-content: center; /* Center the time text */
+    margin-bottom: 8px;
+    min-width: auto;
+  }
   .menu-toggle { display: block; }
   .nav-links{
     display:flex; position:absolute; right:20px; top:64px; background:var(--card); padding:12px; border-radius:10px; flex-direction:column;
