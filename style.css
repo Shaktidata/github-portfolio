@@ -165,6 +165,25 @@ body {
 /* certs */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 
+/* Education & Certification cards */
+.cards .card,
+.cert-grid .cert {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    opacity: 0; /* for animation */
+    transform: translateY(20px); /* initial offset */
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* When visible */
+.cards .card.visible,
+.cert-grid .cert.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 /* contact */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .contact-form{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px}
