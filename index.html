@@ -25,7 +25,7 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
       scroll-behavior: smooth;
     }
 
@@ -59,14 +59,17 @@
       text-align: center;
     }
     .profile { width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:20px; }
-    .hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; }
-    .hero p { color: var(--muted); margin-top: 15px; max-width: 650px; }
-    .socials { display:flex; gap:16px; margin-top:20px; }
+    .hero h1 { font-family:'Poppins',sans-serif; font-size:3rem; }
+    .hero p { color: var(--muted); margin-top: 18px; max-width: 720px; }
+    .socials { display:flex; gap:16px; margin-top:22px; }
     .socials img { width:28px; transition:0.3s; }
     .socials img:hover { transform:scale(1.15); }
-    .btn { margin-top:25px; padding:12px 30px; border-radius:30px; background:var(--primary); color:white; text-decoration:none; }
+    .btn { margin-top:28px; padding:12px 30px; border-radius:30px; background:var(--primary); color:white; text-decoration:none; font-weight:500; }
 
     h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; margin-bottom:40px; text-align:center; }
+
+    /* ABOUT */
+    .about-text { max-width:900px; margin:auto; text-align:center; font-size:1.05rem; }
 
     /* STATS */
     .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px; }
@@ -79,23 +82,51 @@
     .skill { margin-bottom:26px; }
     .skill span { display:flex; justify-content:space-between; }
     .bar { background:var(--border); height:12px; border-radius:20px; overflow:hidden; margin-top:8px; }
-    .fill { height:100%; width:0; background:var(--primary); border-radius:20px; transition:width 1.5s ease; }
+    .fill { height:100%; width:0; background:var(--primary); border-radius:20px; transition:width 1.8s ease; }
 
-    /* CARDS */
+    /* FLIP CARDS */
     .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
-    .card { background:var(--card); padding:30px; border-radius:var(--radius); box-shadow:0 12px 30px rgba(0,0,0,0.06); opacity:0; transform:translateY(40px); transition:0.8s; cursor:pointer; }
-    .card.show { opacity:1; transform:translateY(0); }
-    .card:hover { transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.12); }
+    .flip-card { perspective: 1000px; }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .flip-card.active .flip-inner { transform: rotateY(180deg); }
 
-    /* MODAL */
-    .modal { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:2000; }
-    .modal-content { background:var(--card); padding:30px; border-radius:16px; max-width:520px; width:90%; }
-    .close { float:right; cursor:pointer; font-size:1.4rem; }
+    .card-face {
+      background:var(--card);
+      padding:30px;
+      border-radius:var(--radius);
+      box-shadow:0 12px 30px rgba(0,0,0,0.06);
+      backface-visibility: hidden;
+      position: absolute;
+      inset: 0;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      text-align: center;
+    }
+    .card-face h3 { margin-bottom:8px; }
+    .card-face p { color:var(--muted); font-size:0.95rem; }
+    .details-btn { margin-top:14px; display:inline-block; background:var(--primary); color:#fff; padding:8px 18px; border-radius:20px; cursor:pointer; font-size:0.85rem; text-decoration:none; }
+
+    /* PROJECT SCROLLER */
+    .project-scroll {
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      padding-bottom:10px;
+      scroll-snap-type:x mandatory;
+    }
+    .project-scroll .flip-card { min-width:300px; scroll-snap-align:start; }
 
     /* CONTACT */
     form { max-width:600px; margin:auto; background:var(--card); padding:40px; border-radius:var(--radius); box-shadow:0 12px 30px rgba(0,0,0,0.06); }
     input,textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid var(--border); }
-    button { background:var(--primary); color:white; border:none; padding:14px; border-radius:30px; width:100%; cursor:pointer; }
+    button { background:var(--primary); color:white; border:none; padding:14px; border-radius:30px; width:100%; cursor:pointer; font-weight:500; }
 
     footer { text-align:center; padding:40px; color:var(--muted); }
 
@@ -120,7 +151,7 @@
 
 <section class="hero">
   <img src="profile.jpg" class="profile" alt="Profile" />
-  <h1>Hi, I'm <span id="type"></span></h1>
+  <h1><span id="type"></span></h1>
   <p>Supply Chain professional transitioning into Data Analytics</p>
   <div class="socials">
     <a href="https://github.com/Shaktidata/Data-Projects" target="_blank"><img src="github.svg"></a>
@@ -129,48 +160,136 @@
   <a href="cv.pdf" download class="btn">Download CV</a>
 </section>
 
-<section id="about"><h2>About Me</h2><p style="max-width:900px;margin:auto;text-align:center;">Early-stage data analyst with strong supply chain experience and a passion for data-driven insights.</p></section>
+<section id="about">
+  <h2>About Me</h2>
+  <p class="about-text">
+    I’m early in my data analytics journey, driven by curiosity and a desire to understand how data supports smarter decisions. With experience in structured work environments, I’m now focused on building strong foundations in analytics across multiple domains. I’m developing skills in data cleaning, visualization, reporting, and basic statistics, while continuously learning through projects and hands-on practice. I approach every challenge with a proactive mindset, attention to detail, and a genuine willingness to grow.
+  </p>
+</section>
 
-<section><div class="stats"><div class="stat"><h3 data-count="9">0</h3><p>Years Experience</p></div><div class="stat"><h3 data-count="1">0</h3><p>Data Projects</p></div><div class="stat"><h3 data-count="10000">0</h3><p>Rows Analysed</p></div></div></section>
+<section>
+  <div class="stats">
+    <div class="stat"><h3 data-count="9">0</h3><p>Years Experience</p></div>
+    <div class="stat"><h3 data-count="3">0</h3><p>Data Projects</p></div>
+    <div class="stat"><h3 data-count="10000">0</h3><p>Rows Analysed</p></div>
+  </div>
+</section>
 
-<section id="skills"><h2>Skills</h2><div class="skills"><div class="skill"><span>MS Office 100%</span><div class="bar"><div class="fill" data-width="100%"></div></div></div><div class="skill"><span>Python 10%</span><div class="bar"><div class="fill" data-width="10%"></div></div></div><div class="skill"><span>Power BI 10%</span><div class="bar"><div class="fill" data-width="10%"></div></div></div><div class="skill"><span>ERP Systems 80%</span><div class="bar"><div class="fill" data-width="80%"></div></div></div><div class="skill"><span>Supply Chain 90%</span><div class="bar"><div class="fill" data-width="90%"></div></div></div></div></section>
+<section id="skills">
+  <h2>Skills & Expertise</h2>
+  <div class="skills">
+    <div class="skill"><span>MS Office <small>100%</small></span><div class="bar"><div class="fill" data-width="100%"></div></div></div>
+    <div class="skill"><span>Python <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
+    <div class="skill"><span>Power BI <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
+    <div class="skill"><span>Tableau <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
+    <div class="skill"><span>ERP Systems <small>80%</small></span><div class="bar"><div class="fill" data-width="80%"></div></div></div>
+    <div class="skill"><span>Supply Chain <small>90%</small></span><div class="bar"><div class="fill" data-width="90%"></div></div></div>
+  </div>
+</section>
 
-<section id="experience"><h2>Experience</h2><div class="cards"><div class="card">Senior Team Leader / Commercial Manager<br><small>Asia Industrial Textile</small></div><div class="card">Administration Assistant<br><small>Thai Indo Metallics</small></div><div class="card">Intern<br><small>GM Thailand</small></div></div></section>
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="cards">
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Senior Team Leader / Commercial Manager</h3><p>Asia Industrial Textile</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Led cross-functional teams, inventory planning, and reporting.</p><a class="details-btn" href="#">External Link</a></div></div></div>
+  </div>
+</section>
 
-<section id="projects"><h2>Projects</h2><div class="cards"><div class="card project" data-modal="p1">Sales Dashboard</div></div></section>
-<div class="modal" id="p1"><div class="modal-content"><span class="close">×</span><h3>Sales Dashboard</h3><p>Interactive Power BI analytics project.</p></div></div>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project-scroll">
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Sales Dashboard</h3><p>Power BI</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Interactive KPIs and trend analysis.</p><a class="details-btn" href="#">View Project</a></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Inventory Analysis</h3><p>Excel / SQL</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Stock optimization and forecasting.</p></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Data Cleaning</h3><p>Python</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Data wrangling and preprocessing.</p></div></div></div>
+  </div>
+</section>
 
-<section id="education"><h2>Education</h2><div class="cards"><div class="card">MBA – International Business</div><div class="card">BSc – Information Technology</div></div></section>
-<section id="certifications"><h2>Certifications</h2><div class="cards"><div class="card">CSCP – APICS</div><div class="card">Google Data Analytics</div></div></section>
+<section id="education">
+  <h2>Education</h2>
+  <div class="cards">
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>MBA – International Business</h3><p>Stamford University</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Business analytics and strategy focus.</p></div></div></div>
+  </div>
+</section>
 
-<section id="contact"><h2>Thank You</h2><p style="max-width:900px;margin:auto;text-align:center;">Lets Chat! Send me a message.</p><form action="https://formspree.io/f/mblnwrep" method="POST"><input name="name" placeholder="Your Name" required><input name="email" type="email" placeholder="Your Email" required><textarea name="message" placeholder="Message"></textarea><button>Send</button></form></section>
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="cards">
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>CSCP</h3><p>APICS</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Supply chain strategy certification.</p></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Google Data Analytics</h3><p>Google</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Foundations of data analytics.</p></div></div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Thank You</h2>
+  <form action="https://formspree.io/f/mblnwrep" method="POST">
+    <input name="name" placeholder="Your Name" required>
+    <input name="email" type="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Message"></textarea>
+    <button>Send Message</button>
+  </form>
+</section>
 
 <footer>© Shakti Data Portfolio</footer>
 
 <script>
-  // Typewriter
-  const nameText = "Shakti"; let idx=0;
-  (function type(){ if(idx<nameText.length){ document.getElementById('type').innerHTML+=nameText[idx++]; setTimeout(type,120);} })();
+  // Typewriter (slower)
+  const text = "Hi, I'm Shakti";
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("type").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 220);
+    }
+  }
+  typeWriter();
 
-  // Intersection observer
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); if(e.target.dataset.count){ let t=+e.target.dataset.count,c=0,inc=t/60; let i=setInterval(()=>{c+=inc;e.target.innerText=Math.floor(c);if(c>=t){e.target.innerText=t;clearInterval(i)}},20);} if(e.target.classList.contains('fill')) e.target.style.width=e.target.dataset.width; }
-    })
-  },{threshold:0.3});
+  // Intersection Observer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        if (entry.target.dataset.count) animateCount(entry.target);
+        if (entry.target.classList.contains('fill')) entry.target.style.width = entry.target.dataset.width;
+      }
+    });
+  }, { threshold: 0.3 });
 
-  document.querySelectorAll('.stat,.card,.fill').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.stat, .fill').forEach(el => observer.observe(el));
+
+  function animateCount(el) {
+    const target = +el.dataset.count;
+    let current = 0;
+    const increment = target / 90;
+    const interval = setInterval(() => {
+      current += increment;
+      el.innerText = Math.floor(current);
+      if (current >= target) {
+        el.innerText = target;
+        clearInterval(interval);
+      }
+    }, 25);
+  }
+
+  // Flip cards
+  document.querySelectorAll('.details-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      btn.closest('.flip-card').classList.toggle('active');
+    });
+  });
 
   // Nav active
-  const sections=document.querySelectorAll('section'),links=document.querySelectorAll('.nav a');
-  window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
-
-  // Modal
-  document.querySelectorAll('.project').forEach(c=>c.onclick=()=>document.getElementById(c.dataset.modal).style.display='flex');
-  document.querySelectorAll('.close').forEach(b=>b.onclick=()=>b.closest('.modal').style.display='none');
+  const sections = document.querySelectorAll('section');
+  const links = document.querySelectorAll('.nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => { if (scrollY >= sec.offsetTop - 120) current = sec.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  });
 
   // Dark mode
-  document.getElementById('toggle').onclick=()=>document.body.classList.toggle('dark');
+  document.getElementById('toggle').onclick = () => document.body.classList.toggle('dark');
 </script>
+
 </body>
 </html>
