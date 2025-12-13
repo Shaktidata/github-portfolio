@@ -16,7 +16,7 @@
       --text: #1f2937;
       --muted: #6b7280;
       --border: #e5e7eb;
-      --radius: 16px;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,18 +25,20 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.6;
       scroll-behavior: smooth;
     }
 
-    section { padding: 90px 8%; scroll-margin-top: 90px; }
+    section { padding: 90px 8%; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+    h2 { font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
 
     /* NAV */
     .nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
@@ -47,7 +49,7 @@
     }
     .nav ul { display: flex; gap: 18px; list-style: none; }
     .nav a { text-decoration: none; color: var(--text); font-weight: 500; }
-    .nav a.active, .nav a:hover { color: var(--primary); }
+    .nav a:hover { color: var(--primary); }
 
     /* HERO */
     .hero {
@@ -58,79 +60,153 @@
       align-items: center;
       text-align: center;
     }
-    .profile { width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:20px; }
-    .hero h1 { font-family:'Poppins',sans-serif; font-size:3rem; }
-    .hero p { color: var(--muted); margin-top: 18px; max-width: 720px; }
-    .socials { display:flex; gap:16px; margin-top:22px; }
-    .socials img { width:28px; transition:0.3s; }
-    .socials img:hover { transform:scale(1.15); }
-    .btn { margin-top:28px; padding:12px 30px; border-radius:30px; background:var(--primary); color:white; text-decoration:none; font-weight:500; }
-
-    h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; margin-bottom:40px; text-align:center; }
+    .hero img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 3rem; }
+    .type { color: var(--primary); }
+    .hero p { color: var(--muted); margin-top: 18px; max-width: 650px; }
 
     /* ABOUT */
-    .about-text { max-width:900px; margin:auto; text-align:center; font-size:1.05rem; }
+    .about { max-width: 900px; margin: auto; text-align: center; }
 
     /* STATS */
-    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px; }
-    .stat { background:var(--card); padding:40px; border-radius:var(--radius); text-align:center; box-shadow:0 12px 30px rgba(0,0,0,0.06); opacity:0; transform:translateY(40px); transition:0.8s; }
-    .stat.show { opacity:1; transform:translateY(0); }
-    .stat h3 { font-size:2.6rem; color:var(--primary); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .stat {
+      background: var(--card);
+      padding: 40px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    .stat.show { opacity: 1; transform: translateY(0); }
+    .stat h3 { font-size: 2.6rem; color: var(--primary); }
 
     /* SKILLS */
-    .skills { max-width:850px; margin:auto; }
-    .skill { margin-bottom:26px; }
-    .skill span { display:flex; justify-content:space-between; }
-    .bar { background:var(--border); height:12px; border-radius:20px; overflow:hidden; margin-top:8px; }
-    .fill { height:100%; width:0; background:var(--primary); border-radius:20px; transition:width 1.8s ease; }
+    .skills { max-width: 850px; margin: auto; }
+    .skill { margin-bottom: 26px; }
+    .skill span { display: flex; justify-content: space-between; font-weight: 500; }
+    .bar { background: var(--border); height: 12px; border-radius: 20px; overflow: hidden; margin-top: 8px; }
+    .fill {
+      height: 100%;
+      width: 0;
+      background: var(--primary);
+      border-radius: 20px;
+      transition: width 1.5s ease;
+    }
 
-    /* FLIP CARDS */
-    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
-    .flip-card { perspective: 1000px; }
+    /* FLIP CARD SYSTEM */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      height: 260px;
+    }
+
     .flip-inner {
-      position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.8s;
+      position: relative;
       transform-style: preserve-3d;
+      transition: transform 0.8s ease;
     }
-    .flip-card.active .flip-inner { transform: rotateY(180deg); }
 
-    .card-face {
-      background:var(--card);
-      padding:30px;
-      border-radius:var(--radius);
-      box-shadow:0 12px 30px rgba(0,0,0,0.06);
-      backface-visibility: hidden;
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+    .flip-front, .flip-back {
       position: absolute;
       inset: 0;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card-back {
-      transform: rotateY(180deg);
-      text-align: center;
+
+    .flip-front:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.12);
     }
-    .card-face h3 { margin-bottom:8px; }
-    .card-face p { color:var(--muted); font-size:0.95rem; }
-    .details-btn { margin-top:14px; display:inline-block; background:var(--primary); color:#fff; padding:8px 18px; border-radius:20px; cursor:pointer; font-size:0.85rem; text-decoration:none; }
+
+    .flip-back { transform: rotateY(180deg); }
+
+    .flip-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      align-self: flex-end;
+      color: var(--primary);
+    }
+
+    .project-link {
+      margin-top: 12px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+    }
 
     /* PROJECT SCROLLER */
     .project-scroll {
-      display:flex;
-      gap:20px;
-      overflow-x:auto;
-      padding-bottom:10px;
-      scroll-snap-type:x mandatory;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
     }
-    .project-scroll .flip-card { min-width:300px; scroll-snap-align:start; }
+    .project-scroll .flip-card {
+      min-width: 280px;
+      scroll-snap-align: start;
+    }
 
     /* CONTACT */
-    form { max-width:600px; margin:auto; background:var(--card); padding:40px; border-radius:var(--radius); box-shadow:0 12px 30px rgba(0,0,0,0.06); }
-    input,textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid var(--border); }
-    button { background:var(--primary); color:white; border:none; padding:14px; border-radius:30px; width:100%; cursor:pointer; font-weight:500; }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: var(--card);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+    }
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      width: 100%;
+    }
 
-    footer { text-align:center; padding:40px; color:var(--muted); }
-
-    body.dark { --bg:#0f172a; --card:#1e293b; --text:#e5e7eb; --muted:#9ca3af; --border:#334155; }
+    footer { text-align: center; padding: 40px; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -145,26 +221,20 @@
     <li><a href="#education">Education</a></li>
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><button id="toggle">🌙</button></li>
   </ul>
 </nav>
 
 <section class="hero">
-  <img src="profile.jpg" class="profile" alt="Profile" />
-  <h1><span id="type"></span></h1>
-  <p>Supply Chain professional transitioning into Data Analytics</p>
-  <div class="socials">
-    <a href="https://github.com/Shaktidata/Data-Projects" target="_blank"><img src="github.svg"></a>
-    <a href="https://linkedin.com/in/shakti-c-3212ab333" target="_blank"><img src="linkedin.svg"></a>
-  </div>
-  <a href="cv.pdf" download class="btn">Download CV</a>
+  <img src="profile.jpg" alt="Profile" />
+  <h1><span class="type" id="type"></span></h1>
+  <p>Data Analyst Enthusiast with a strong supply chain background.</p>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
-  <p class="about-text">
-    I’m early in my data analytics journey, driven by curiosity and a desire to understand how data supports smarter decisions. With experience in structured work environments, I’m now focused on building strong foundations in analytics across multiple domains. I’m developing skills in data cleaning, visualization, reporting, and basic statistics, while continuously learning through projects and hands-on practice. I approach every challenge with a proactive mindset, attention to detail, and a genuine willingness to grow.
-  </p>
+  <div class="about">
+    <p>I’m early in my data analytics journey, driven by curiosity and a desire to understand how data supports smarter decisions. With experience in structured work environments, I’m now focused on building strong foundations in analytics across multiple domains. I’m developing skills in data cleaning, visualization, reporting, and basic statistics, while continuously learning through projects and hands-on practice. I approach every challenge with a proactive mindset, attention to detail, and a genuine willingness to grow.</p>
+  </div>
 </section>
 
 <section>
@@ -181,7 +251,6 @@
     <div class="skill"><span>MS Office <small>100%</small></span><div class="bar"><div class="fill" data-width="100%"></div></div></div>
     <div class="skill"><span>Python <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
     <div class="skill"><span>Power BI <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
-    <div class="skill"><span>Tableau <small>10%</small></span><div class="bar"><div class="fill" data-width="10%"></div></div></div>
     <div class="skill"><span>ERP Systems <small>80%</small></span><div class="bar"><div class="fill" data-width="80%"></div></div></div>
     <div class="skill"><span>Supply Chain <small>90%</small></span><div class="bar"><div class="fill" data-width="90%"></div></div></div>
   </div>
@@ -190,45 +259,42 @@
 <section id="experience">
   <h2>Experience</h2>
   <div class="cards">
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Senior Team Leader / Commercial Manager</h3><p>Asia Industrial Textile</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Led cross-functional teams, inventory planning, and reporting.</p><a class="details-btn" href="#">External Link</a></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="flip-front"><h3>Senior Team Leader</h3><p>Asia Industrial Textile</p><button class="flip-btn">→</button></div><div class="flip-back"><p>Commercial & operations leadership role.</p><button class="flip-btn">←</button></div></div></div>
   </div>
 </section>
 
 <section id="projects">
   <h2>Projects</h2>
   <div class="project-scroll">
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Sales Dashboard</h3><p>Power BI</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Interactive KPIs and trend analysis.</p><a class="details-btn" href="#">View Project</a></div></div></div>
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Inventory Analysis</h3><p>Excel / SQL</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Stock optimization and forecasting.</p></div></div></div>
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Data Cleaning</h3><p>Python</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Data wrangling and preprocessing.</p></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="flip-front"><h3>Netflix Analysis</h3><p>Excel Project</p><button class="flip-btn">→</button></div><div class="flip-back"><p>Exploratory analysis & insights.</p><a class="project-link" href="#" target="_blank">View Project</a><button class="flip-btn">←</button></div></div></div>
   </div>
 </section>
 
 <section id="education">
   <h2>Education</h2>
   <div class="cards">
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>MBA – International Business</h3><p>Stamford University</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Business analytics and strategy focus.</p></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="flip-front"><h3>MBA</h3><p>International Business</p><button class="flip-btn">→</button></div><div class="flip-back"><p>Stamford University</p><button class="flip-btn">←</button></div></div></div>
   </div>
 </section>
 
 <section id="certifications">
   <h2>Certifications</h2>
   <div class="cards">
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>CSCP</h3><p>APICS</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Supply chain strategy certification.</p></div></div></div>
-    <div class="flip-card"><div class="flip-inner"><div class="card-face"><h3>Google Data Analytics</h3><p>Google</p><span class="details-btn">Details</span></div><div class="card-face card-back"><p>Foundations of data analytics.</p></div></div></div>
+    <div class="flip-card"><div class="flip-inner"><div class="flip-front"><h3>CSCP</h3><p>APICS</p><button class="flip-btn">→</button></div><div class="flip-back"><p>Supply Chain Certification</p><button class="flip-btn">←</button></div></div></div>
   </div>
 </section>
 
 <section id="contact">
   <h2>Thank You</h2>
-  <form action="https://formspree.io/f/mblnwrep" method="POST">
-    <input name="name" placeholder="Your Name" required>
-    <input name="email" type="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Message"></textarea>
-    <button>Send Message</button>
+  <form action="https://formspree.io/f/yourFormID" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
   </form>
 </section>
 
-<footer>© Shakti Data Portfolio</footer>
+<footer>© Built with curiosity, coffee, and data.</footer>
 
 <script>
   // Typewriter (slower)
@@ -243,7 +309,14 @@
   }
   typeWriter();
 
-  // Intersection Observer
+  // Flip cards
+  document.querySelectorAll('.flip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.flip-card').classList.toggle('flipped');
+    });
+  });
+
+  // Scroll animations
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -259,36 +332,16 @@
   function animateCount(el) {
     const target = +el.dataset.count;
     let current = 0;
-    const increment = target / 90;
+    const inc = target / 80;
     const interval = setInterval(() => {
-      current += increment;
+      current += inc;
       el.innerText = Math.floor(current);
       if (current >= target) {
         el.innerText = target;
         clearInterval(interval);
       }
-    }, 25);
+    }, 20);
   }
-
-  // Flip cards
-  document.querySelectorAll('.details-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      btn.closest('.flip-card').classList.toggle('active');
-    });
-  });
-
-  // Nav active
-  const sections = document.querySelectorAll('section');
-  const links = document.querySelectorAll('.nav a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => { if (scrollY >= sec.offsetTop - 120) current = sec.id; });
-    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-  });
-
-  // Dark mode
-  document.getElementById('toggle').onclick = () => document.body.classList.toggle('dark');
 </script>
 
 </body>
