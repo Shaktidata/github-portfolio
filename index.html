@@ -1,165 +1,176 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shakti C — Resume & Portfolio</title>
-  <meta name="description" content="Shakti C — Data Analyst Enthusiast | Supply Chain Professional — portfolio & resume" />
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shakti | Data Analyst Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    section { padding: 90px 8%; scroll-margin-top: 90px; }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 8%;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav ul { display: flex; gap: 18px; list-style: none; }
+    .nav a { text-decoration: none; color: var(--text); font-weight: 500; }
+    .nav a.active, .nav a:hover { color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .profile { width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:20px; }
+    .hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; }
+    .hero p { color: var(--muted); margin-top: 15px; max-width: 650px; }
+    .socials { display:flex; gap:16px; margin-top:20px; }
+    .socials img { width:28px; transition:0.3s; }
+    .socials img:hover { transform:scale(1.15); }
+    .btn { margin-top:25px; padding:12px 30px; border-radius:30px; background:var(--primary); color:white; text-decoration:none; }
+
+    h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; margin-bottom:40px; text-align:center; }
+
+    /* STATS */
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px; }
+    .stat { background:var(--card); padding:40px; border-radius:var(--radius); text-align:center; box-shadow:0 12px 30px rgba(0,0,0,0.06); opacity:0; transform:translateY(40px); transition:0.8s; }
+    .stat.show { opacity:1; transform:translateY(0); }
+    .stat h3 { font-size:2.6rem; color:var(--primary); }
+
+    /* SKILLS */
+    .skills { max-width:850px; margin:auto; }
+    .skill { margin-bottom:26px; }
+    .skill span { display:flex; justify-content:space-between; }
+    .bar { background:var(--border); height:12px; border-radius:20px; overflow:hidden; margin-top:8px; }
+    .fill { height:100%; width:0; background:var(--primary); border-radius:20px; transition:width 1.5s ease; }
+
+    /* CARDS */
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+    .card { background:var(--card); padding:30px; border-radius:var(--radius); box-shadow:0 12px 30px rgba(0,0,0,0.06); opacity:0; transform:translateY(40px); transition:0.8s; cursor:pointer; }
+    .card.show { opacity:1; transform:translateY(0); }
+    .card:hover { transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.12); }
+
+    /* MODAL */
+    .modal { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:2000; }
+    .modal-content { background:var(--card); padding:30px; border-radius:16px; max-width:520px; width:90%; }
+    .close { float:right; cursor:pointer; font-size:1.4rem; }
+
+    /* CONTACT */
+    form { max-width:600px; margin:auto; background:var(--card); padding:40px; border-radius:var(--radius); box-shadow:0 12px 30px rgba(0,0,0,0.06); }
+    input,textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid var(--border); }
+    button { background:var(--primary); color:white; border:none; padding:14px; border-radius:30px; width:100%; cursor:pointer; }
+
+    footer { text-align:center; padding:40px; color:var(--muted); }
+
+    body.dark { --bg:#0f172a; --card:#1e293b; --text:#e5e7eb; --muted:#9ca3af; --border:#334155; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home">Shakti C</a>
-      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="hamburger"></span>
-      </button>
-      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <!-- HERO -->
-  <main>
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-left">
-          <h1>Hi, I'm <strong>Shakti.</strong></h1>
-          <p class="subtitle">Data Analyst Enthusiast | Supply Chain Professional</p>
-          <p class="cta-row">
-            <a class="btn" href="#projects">View Projects</a>
-            <a class="btn ghost" href="#contact">Contact Me</a>
-          </p>
-          <div class="icons-row">
-            <a href="#" aria-label="GitHub">github.com</a>
-            <a href="#" aria-label="LinkedIn">linkedin.com</a>
-            <a href="#" aria-label="Portfolio">datascienceportfol.io</a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="avatar" role="img" aria-label="Shakti professional photo">
-            <!-- If you have an image, replace with <img src="..." alt="..."> -->
-            <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="220" height="220" rx="24" fill="#FFFFFF11"></rect>
-              <text x="50%" y="50%" fill="#fff" dominant-baseline="middle" text-anchor="middle" font-size="20">Photo</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
+<nav class="nav">
+  <div class="logo">Shakti</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button id="toggle">🌙</button></li>
+  </ul>
+</nav>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <p class="lead">I’m early in my data analytics journey, driven by curiosity and a desire to understand how data supports smarter decisions. With experience in structured environments, I'm building capabilities in data cleaning, visualization, reporting and basic statistics — learning through projects and hands-on practice.</p>
-        <ul class="about-list">
-          <li>Excel, Power BI / Tableau, ERP Systems</li>
-          <li>Exploring analytics across domains</li>
-          <li>Curious learner with a problem-solving mindset</li>
-        </ul>
-        <div class="stats">
-          <div class="stat"><strong>9+</strong><span>Years Supply Chain</span></div>
-          <div class="stat"><strong>1+</strong><span>Data Projects</span></div>
-          <div class="stat"><strong>10k+</strong><span>Data Rows Analysed</span></div>
-        </div>
-      </div>
-    </section>
+<section class="hero">
+  <img src="profile.jpg" class="profile" alt="Profile" />
+  <h1>Hi, I'm <span id="type"></span></h1>
+  <p>Supply Chain professional transitioning into Data Analytics</p>
+  <div class="socials">
+    <a href="https://github.com/YOUR_USERNAME" target="_blank"><img src="github.svg"></a>
+    <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank"><img src="linkedin.svg"></a>
+  </div>
+  <a href="cv.pdf" download class="btn">Download CV</a>
+</section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section alt">
-      <div class="container">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skill-grid">
-          <div class="skill-card">MS Office Suite 365</div>
-          <div class="skill-card">Power BI / Tableau</div>
-          <div class="skill-card">Python</div>
-          <div class="skill-card">Supply Chain</div>
-        </div>
-      </div>
-    </section>
+<section id="about"><h2>About Me</h2><p style="max-width:900px;margin:auto;text-align:center;">Early-stage data analyst with strong supply chain experience and a passion for data-driven insights.</p></section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-date">2014 — 2023</div>
-            <div class="timeline-body">
-              <h3>Senior Team Leader / Commercial Manager | Asia Industrial Textile</h3>
-              <p>Experienced in coordinating end-to-end supply chain operations, optimising inventory and ensuring operational continuity. Skilled at stakeholder engagement, supplier relationships, and data-driven reporting.</p>
-            </div>
-          </article>
+<section><div class="stats"><div class="stat"><h3 data-count="9">0</h3><p>Years Experience</p></div><div class="stat"><h3 data-count="1">0</h3><p>Data Projects</p></div><div class="stat"><h3 data-count="10000">0</h3><p>Rows Analysed</p></div></div></section>
 
-          <article class="timeline-item">
-            <div class="timeline-date">2011 — 2012</div>
-            <div class="timeline-body">
-              <h3>Administration Assistant | Thai Indo Metallics</h3>
-              <p>Handled general office administration and IT support, troubleshooting and ensuring smooth daily operations.</p>
-            </div>
-          </article>
+<section id="skills"><h2>Skills</h2><div class="skills"><div class="skill"><span>MS Office 100%</span><div class="bar"><div class="fill" data-width="100%"></div></div></div><div class="skill"><span>Python 10%</span><div class="bar"><div class="fill" data-width="10%"></div></div></div><div class="skill"><span>Power BI 10%</span><div class="bar"><div class="fill" data-width="10%"></div></div></div><div class="skill"><span>ERP Systems 80%</span><div class="bar"><div class="fill" data-width="80%"></div></div></div><div class="skill"><span>Supply Chain 90%</span><div class="bar"><div class="fill" data-width="90%"></div></div></div></div></section>
 
-          <article class="timeline-item">
-            <div class="timeline-date">2010</div>
-            <div class="timeline-body">
-              <h3>Intern | General Motors (Thailand) Ltd.</h3>
-              <p>Assisted in supply chain operations, supporting inventory management and logistics coordination.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="experience"><h2>Experience</h2><div class="cards"><div class="card">Senior Team Leader / Commercial Manager<br><small>Asia Industrial Textile</small></div><div class="card">Administration Assistant<br><small>Thai Indo Metallics</small></div><div class="card">Intern<br><small>GM Thailand</small></div></div></section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section alt">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-          <article class="project-card" data-title="Netflix Recommendation Engine" data-tech="Excel" data-desc="To identify highly correlated TV show pairs to predict viewer preferences using simulated Netflix data.">
-            <div class="project-meta">
-              <h3>Netflix Recommendation Engine</h3>
-              <span class="pill">Excel</span>
-            </div>
-            <p class="project-excerpt">Identify highly correlated show pairs and produce simple recommendation logic based on correlation metrics.</p>
-            <div class="project-actions">
-              <button class="btn small details-btn">Details</button>
-              <a class="btn small ghost" href="#" target="_blank" rel="noopener">Repository</a>
-            </div>
-          </article>
+<section id="projects"><h2>Projects</h2><div class="cards"><div class="card project" data-modal="p1">Sales Dashboard</div></div></section>
+<div class="modal" id="p1"><div class="modal-content"><span class="close">×</span><h3>Sales Dashboard</h3><p>Interactive Power BI analytics project.</p></div></div>
 
-          <article class="project-card coming-soon" data-title="Coming Soon" data-tech="Power BI" data-desc="Will be updated once completed.">
-            <div class="project-meta">
-              <h3>Coming Soon</h3>
-              <span class="pill">Power BI</span>
-            </div>
-            <p class="project-excerpt">Dashboard work-in-progress.</p>
-            <div class="project-actions">
-              <button class="btn small details-btn">Details</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="education"><h2>Education</h2><div class="cards"><div class="card">MBA – International Business</div><div class="card">BSc – Information Technology</div></div></section>
+<section id="certifications"><h2>Certifications</h2><div class="cards"><div class="card">CSCP – APICS</div><div class="card">Google Data Analytics</div></div></section>
 
-    <!-- EDUCATION & CERTS -->
-    <section id="education" class="section">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Masters of Business Administration — International Business</h4>
-            <p class="muted">Stamford University — 2023</p>
-          </div>
-          <div class="card">
-            <h4>Bachelor of Science - Information Techno
+<section id="contact"><h2>Thank You</h2><form action="https://formspree.io/f/yourFormID" method="POST"><input name="name" placeholder="Your Name" required><input name="email" type="email" placeholder="Your Email" required><textarea name="message" placeholder="Message"></textarea><button>Send</button></form></section>
+
+<footer>© Shakti Data Portfolio</footer>
+
+<script>
+  // Typewriter
+  const nameText = "Shakti"; let idx=0;
+  (function type(){ if(idx<nameText.length){ document.getElementById('type').innerHTML+=nameText[idx++]; setTimeout(type,120);} })();
+
+  // Intersection observer
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); if(e.target.dataset.count){ let t=+e.target.dataset.count,c=0,inc=t/60; let i=setInterval(()=>{c+=inc;e.target.innerText=Math.floor(c);if(c>=t){e.target.innerText=t;clearInterval(i)}},20);} if(e.target.classList.contains('fill')) e.target.style.width=e.target.dataset.width; }
+    })
+  },{threshold:0.3});
+
+  document.querySelectorAll('.stat,.card,.fill').forEach(el=>obs.observe(el));
+
+  // Nav active
+  const sections=document.querySelectorAll('section'),links=document.querySelectorAll('.nav a');
+  window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
+
+  // Modal
+  document.querySelectorAll('.project').forEach(c=>c.onclick=()=>document.getElementById(c.dataset.modal).style.display='flex');
+  document.querySelectorAll('.close').forEach(b=>b.onclick=()=>b.closest('.modal').style.display='none');
+
+  // Dark mode
+  document.getElementById('toggle').onclick=()=>document.body.classList.toggle('dark');
+</script>
+</body>
+</html>
